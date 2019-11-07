@@ -35,7 +35,11 @@ function ecpt_pricetable_shortcode($atts) {
     // Normalpreis
     if($prices['default'] > 0) {
         $column_count++;
-        $html .= ecpt_generate_column('Normalpreis', $prices['default']);
+        if ($prices['fruehbucher'] > 0 && $prices['last_minute'] > 0) {
+            $html .= ecpt_generate_column('Normalpreis', $prices['default']);
+        } else {
+            $html .= ecpt_generate_column('Kosten', $prices['default']);
+        }
     }
 
     // Last-Minute
