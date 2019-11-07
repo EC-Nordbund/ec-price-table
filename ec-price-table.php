@@ -57,10 +57,11 @@ function ecpt_pricetable_shortcode($atts) {
 
 function ecpt_generate_column($title = '', $price = '', $date = '', $type = 'default') {
     $color = ecpt_get_column_color($type);
+    $text_color = ecpt_get_column_text_color($type);
 
     $html = '<div class="columns" style="float: left; background-color: white;">';
     $html .= '<ul style="list-style-type: none; margin: 0; padding: 0;">';
-        $html .= '<li style="padding: 12px 24px; text-align: center; font-size: 25px; background-color: ' . $color . ';">' . $title . '</li>';
+        $html .= '<li style="padding: 12px 24px; text-align: center; font-size: 25px; background-color: ' . $color . '; color: ' . $text_color . '">' . $title . '</li>';
         $html .= '<li style="border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee; padding: 12px 24px; text-align: center;">' . $price . ' EUR </li>';
         if(!empty($date)) {
             $html .= '<li style="border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee; padding: 8px 24px; min-height: 60px; text-align: center;">' . $date . '</li>';
@@ -112,5 +113,16 @@ function ecpt_get_column_color($price_type) {
         
         default:
             return '#eee';
+    }
+}
+
+function ecpt_get_column_text_color($price_type) {
+    switch ($price_type) {
+        
+        case 'last_minute':
+            return '#ddd';
+        
+        default:
+            return 'inherit';
     }
 }
